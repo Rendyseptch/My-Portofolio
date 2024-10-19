@@ -1,0 +1,871 @@
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap");
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+  --header-height: 3.5rem;
+
+  /*========== Colors ==========*/
+  /*Color mode HSL(hue, saturation, lightness)*/
+  /* 
+      Change favorite color
+      Default: hsl(162, 100%, 40%)
+      Orange: hsl(14, 100%, 65%) - Blue: hsl(210, 100%, 70%)
+      Pink: hsl(356, 100%, 75%) - Purple: hsl(250, 100%, 75%)
+
+      For more colors visit: https://colors.dopely.top/color-pedia
+      -> Choose any color 
+      -> click on tab (Color Conversion)
+      -> Copy the color mode (HSL)
+  */
+
+  --hue: 162;
+  --first-color: hsl(var(--hue), 100%, 40%);
+  --first-color-alt: hsl(var(--hue), 56%, 35%);
+  --title-color: hsl(228, 8%, 95%);
+  --text-color: hsl(228, 8%, 65%);
+  --body-color: hsl(228, 15%, 20%);
+  --container-color: hsl(228, 15%, 15%);
+
+  /*========== Font and typography ==========*/
+  /*.5rem = 8px | 1rem = 16px ...*/
+  --body-font: "Poppins", sans-serif;
+  --biggest-font-size: 2rem;
+  --bigger-font-size: 1.25rem;
+  --h1-font-size: 1.5rem;
+  --h2-font-size: 1.25rem;
+  --h3-font-size: 1rem;
+  --normal-font-size: .938rem;
+  --small-font-size: .813rem;
+  --smaller-font-size: .75rem;
+
+  /*========== Font weight ==========*/
+  --font-regular: 400;
+  --font-medium: 500;
+  --font-semi-bold: 600;
+
+  /*========== z index ==========*/
+  --z-tooltip: 10;
+  --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1152px) {
+  :root {
+    --biggest-font-size: 4rem;
+    --bigger-font-size: 2rem;
+    --h1-font-size: 2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .813rem;
+  }
+}
+
+/*=============== BASE ===============*/
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+input,
+textarea,
+button,
+body {
+  font-family: var(--body-font);
+  font-size: var(--normal-font-size);
+}
+
+body {
+  background-color: var(--body-color);
+  color: var(--text-color);
+}
+
+input,
+textarea,
+button {
+  outline: none;
+  border: none;
+}
+
+h1, h2, h3, h4 {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+ul {
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+img,
+svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/*=============== REUSABLE CSS CLASSES ===============*/
+.container {
+  max-width: 900px;
+  margin-inline: 1.5rem;
+  max-width: 1200px;
+  margin: auto;
+
+  padding: 0 1.5rem;
+}
+
+.grid {
+  display: grid;
+  gap: 1.5rem;
+}
+
+.section {
+  padding-block: 5rem 2rem;
+}
+
+.section__title, 
+.section__subtitle {
+  text-align: center;
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.section__title {
+  font-size: var(--h1-font-size);
+  margin-bottom: 1.5rem;
+}
+
+.section__subtitle {
+  font-size: var(--small-font-size);
+  margin-bottom: .25rem;
+}
+
+.section__subtitle span {
+  color: var(--first-color);
+}
+
+.main {
+  overflow: hidden; /* For animation ScrollReveal */
+}
+
+/*=============== HEADER & NAV ===============*/
+
+.header {
+  position: fixed;
+  width: 100%;
+  background-color: var(--container-color);
+  top: 0;
+  left: 0;
+  z-index: var(--z-fixed);
+
+  overflow: hidden;
+}
+
+.nav {
+  height: var(--header-height);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav li {
+  margin-bottom: 10px; /* Atur jarak antar menu sesuai kebutuhan */
+}
+.nav__logo {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+}
+
+.nav__logo span {
+  color: var(--first-color);
+}
+
+.nav__toggle,
+.nav__close {
+  display: flex;
+  font-size: 1.25rem;
+  color: var(--title-color);
+  cursor: pointer;
+}
+
+/* Navigation for mobile devices */
+@media screen and (max-width: 1023px) {
+  .nav__menu {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    background-color: hsla(0, 0%, 0%, .3);
+    width: 50%;
+    padding: 4.5rem 0 0 3rem;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    transition: right .4s;
+ 
+  }
+
+  /* .nav__list {
+    display: flex;
+    flex-direction: column;
+    row-gap: 3rem;
+  } */
+.nav__list {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: -10px;
+}
+  .nav__close {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+  }
+
+  .show-menu {
+    right: 0;
+  }
+}
+
+.nav__link {
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  transition: color .4s;
+}
+
+.nav__link:hover {
+  color: var(--first-color);
+}
+
+
+/* Add blur to header */
+/* (Your additional CSS styles here) */
+.blur-header{
+  background-color: transparent;
+}
+.blur-header::after{
+  content: '';
+  position: absolute;
+  width: 1000%;
+  height: 100%;
+  background-color: hsla(0, 0%, 10%, .3);
+  backdrop-filter: blur(24px);
+  top: 0;
+  left: 0;
+  z-index: -1;
+
+}
+
+/* Active link */
+/* (Your additional CSS styles here) */
+.Active-link{
+  color: var(--first-color);
+}
+/*=============== HOME ===============*/
+/* (Your additional CSS styles here) */
+.home{
+  background-color: var(--container-color);
+}
+.home__container{
+  padding-top: 2rem;
+  row-gap: 2rem;
+  padding left : -3000px;
+}
+.home__content{
+  /* display: grid;
+  row-gap: 2rem; */
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem; /* Jarak antara kolom */
+  align-items: center;
+}
+.home__data{
+  text-align: center; 
+}
+.home__subtitle,
+.home__education{
+  font-size: var(--bigger-font-size);
+}
+.home__subtitle span,
+.home__title{
+  color: var(--first-color);
+}
+.home__title{
+  font-size: var(--biggest-font-size);
+  font-weight: var(--font-semi-bold);
+}
+.home__description{
+  margin-block: 1rem 1.5rem;
+}
+.home__social{
+  display: flex;
+  justify-content: center;
+  column-gap: 1.25rem;
+  padding-top: 40px;
+  padding-left: 34%;
+}
+.home__social-link{
+  display: flex;
+  background-color: var(--first-color-alt);
+  padding: .5rem;
+  color: var(--title-color);
+  font-size: 1.5rem;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: transform .4s; /* Perbaikan dari 'tranform' menjadi 'transform' */
+}
+
+/* Menambahkan efek hover untuk memperbesar dan mengubah warna background */
+.home__social-link:hover {
+  transform: translateY(-.25rem); /* Membuat ikon lebih besar */
+ 
+}
+.home__image{
+  justify-self: right;
+  align-item: right;
+
+}
+.home__blob{
+width: 320px;
+ align-items: right;
+  fill: var(--first-color);
+  filter: drop-shadow(0 12px hsla(var(--hue), 100%, 40%, .2));
+}
+
+
+/*=============== BUTTON ===============*/
+/* (Your additional CSS styles here) */
+.button{
+  display: inline-block;
+  background-color: var(--first-color);
+  padding: 1rem 1.75rem;
+  border-radius: .rem;
+  color: var(--title-color);
+  font-weight: var(--font-medium);
+  transition: box-shadow .4s;
+  
+
+}
+.button: hover{
+  box-shadow: 0 8px 24px hsla(val(--hue), 100%, 40%, .25);
+
+} 
+/*=============== ABOUT ===============*/
+/* (Your additional CSS styles here) */
+.about__container{
+  row-gap: 2.5rem;
+}
+.about__data{
+  text-align: center;
+}
+.about__description{
+  margin-bottom: 2rem;
+}
+.about__image{
+  justify-self: center;
+}
+.about__blob{
+  width: 320px;
+}
+.about__blob path{
+  stroke: var(--first-color);
+}
+
+/*=============== SKILLS ===============*/
+/* (Your additional CSS styles here) */
+.skills__container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.skills__data {
+  text-align: center;
+  margin-bottom: 2rem;
+  margin-right: 10%;
+}
+
+.skill__content {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+}
+
+.skill__group {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  flex: 0 0 48%;
+  box-sizing: border-box;
+}
+
+.skills__item {
+  display: flex;
+  align-items: center;
+  font-size: 1.2rem;
+  margin: 0.5rem 0;
+  transition: transform 0.3s;
+}
+
+.skills__item:hover {
+  transform: scale(1.1);
+}
+
+.skills__icon {
+  margin-right: 0.5rem;
+  font-size: 2rem;
+}
+/*=============== SERVICES ===============*/
+/* (Your additional CSS styles here) */
+.services__container {
+  gap: 2rem;
+  padding-block: 1rem;
+  display: flex;
+
+  flex-wrap: wrap;
+}
+
+.services__card {
+  text-align: center;
+  background-color: var(--container-color);
+  padding: 3rem 1.25rem;
+  border: 2px solid var(--container-color);
+  transition: border 0.4s; 
+
+  flex: 1 1 calc(33.333% - 2rem); /* Menentukan lebar kartu dan jarak antar kartu */
+  box-sizing: border-box;
+}
+
+.services__icon {
+  display: block;
+  font-size: 4rem;
+  color: var(--first-color);
+  margin-bottom: 0.75rem;
+}
+
+.services__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: 1.5rem;
+}
+
+
+.services__card:hover {
+  border: 2px solid var(--first-color); 
+}
+
+@media (max-width: 768px) {
+  .services__card {
+    flex: 1 1 calc(50% - 2rem); /* Setiap kartu mengambil setengah lebar layar */
+  }
+}
+
+@media (max-width: 480px) {
+  .services__card {
+    flex: 1 1 100%; /* Setiap kartu mengambil seluruh lebar layar */
+  }
+}
+/*=============== EXPERIENCE ===============*/
+.experience {
+  height: 100%; /* Full viewport height */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--container-color); /* Background color as per your theme */
+}
+
+.carousel {
+  width: 100%;
+  max-width: 800px; /* Max width for better visuals */
+  margin: 0 auto;
+}
+
+/*=============== PROJECTS ===============*/
+/* (Your additional CSS styles here) */
+.projects {
+  background-color: var(--container-color);
+}
+/* .projects__container {
+  row-gap: 2rem;
+  justify-content: center;
+  padding-block: 1rem;
+} */
+.projects__container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* Membuat dua kolom dengan ukuran yang sama */
+  gap: 2rem; /* Memberikan jarak antara kartu */
+  justify-content: center;
+  padding-block: 1rem;
+  width: 80%;
+}
+.projects__card {
+  position: relative;
+  border-radius: 1rem;
+  overflow: hidden;
+}
+.project__description{
+font-size: 14px;
+margin: 20px 20px 20px 20px;
+color: white;
+}
+.projects__img {
+  width: 100%;
+  height: 100%;
+}
+.projects__modal {
+  position: absolute;
+  left: 0;
+  bottom: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(180deg,
+      hsla(0, 0%, 0%, 0) 0%,
+      hsla(var(--hue), 70%, 40%, .8) 120%);
+  backdrop-filter: blur(4px);
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center; /* Corrected from justifiy-content */
+  transition: bottom 4s;
+}
+
+.projects__subtitle,
+.projects__button {
+  color: var(--title-color);
+  font-size: var(--small-font-size); /* Corrected from var(--small-font_size) */
+}
+.projects__subtitle {
+  display: block;
+  margin-bottom: .25rem;
+}
+.projects__title {
+  font-size: var(--h2-font-size);
+  margin-bottom: .75rem;
+  font-weight: 900; /* Membuat teks menjadi sangat tebal */
+  color: yellow; /* Mengubah warna teks menjadi hijau */
+}
+
+.projects__button {
+  display: flex;
+  align-items: center; /* Corrected from align-item */
+  column-gap: .5rem;
+  font-weight: var(--font-medium);
+}
+.projects__button i {
+  font-size: 1.25rem;
+}
+.projects__card:hover .projects__modal { /* Corrected hover pseudo-class */
+  bottom: 0;
+}
+
+/*=============== CONTACT ===============*/
+/* (Your additional CSS styles here) */
+.contact__coontainer{
+  padding-top: 1rem;
+  
+
+}
+.contac_form,
+.contact_group{
+  display:grid;
+  row-gap: 1rem;
+
+}
+contact__form{
+  position:relative;
+}
+.contact__input{
+  padding: 1rem 1.25rem;
+  border-radius: 2rem;
+  margin: 5px;
+  background-color: var(--container-color);
+  color: var(--title-color);
+}
+.contact__form textarea {
+  height: 11rem;
+  resize: none;
+  margin-bottom: 2rem;
+  
+}
+
+/* .contact__button {
+  justify-self: center;
+  cursor: pointer;
+} */
+contact__button {
+  justify-self: center;
+  cursor: pointer;
+  border-radius: 12px; /* Mengatur sudut melengkung */
+  padding: 10px 20px; /* Menambahkan padding untuk estetika */
+  background-color: #007BFF; /* Warna latar belakang untuk tombol */
+  color: white; /* Warna teks tombol */
+  border: none; /* Menghilangkan border default */
+  font-size: 16px; /* Ukuran font */
+  transition: background-color 0.3s ease; /* Efek transisi untuk perubahan warna */
+}
+
+.contact__button:hover {
+  background-color: #0056b3; /* Warna latar belakang saat di-hover */
+}
+.contact__message {
+  position: absolute;
+  left: 0;
+  bottom: 4.5rem;
+  font-size: var(--small-font-size);
+  color: var(--title-color);
+}
+
+/*=============== FOOTER ===============*/
+/* (Your additional CSS styles here) */
+.footer {
+  background-color: var(--container-color);
+  padding-block: 3.5rem 2rem;
+}
+
+.footer__container {
+  row-gap: 2rem;
+  text-align: center;
+}
+
+.footer__title {
+  font-size: var(--h1-font-size);
+  font-weight: var(--font-semi-bold);
+  margin-bottom: .25rem;
+}
+
+.footer__education {
+  font-size: var(--normal-font-size);
+}
+
+.footer__social {
+  display: flex;
+  justify-content: center;
+  column-gap: 1.25rem;
+  align-items: center;
+}
+
+.footer__social-link {
+  display: flex;
+  background-color: var(--first-color-alt);
+  padding: .5rem;
+  color: var(--title-color);
+  font-size: 1.5rem;
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  transition: transform .4s;
+  width: 5%;
+  justify-content: center;
+  align-item: center;
+  margin: auto;
+}
+.footer__social-link: hover{
+  transform:translateY(-.25rem);
+
+}
+.footer__copy{
+  font-size: var(--smaller-font-size);
+  margin-top: 2rem;
+}
+
+
+/*=============== SCROLL BAR ===============*/
+/* (Your additional CSS styles here) */
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: .6rem;
+  border-radius: .5rem;
+  background-color: hsl(228, 12%, 25%);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: hsl(228, 8%, 35%);
+  border-radius: .5rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: hsl(228, 8%, 45%);
+}
+
+/*=============== SCROLL UP ===============*/
+/* (Your additional CSS styles here) */
+.scrollup {
+  position: fixed;
+  right: 1rem;
+  bottom: -50%;
+  background-color: var(--body-color);
+  padding: 6px;
+  display: inline-flex;
+  border-radius: .25rem;
+  color: var(--first-color);
+  font-size: 1.25rem;
+  box-shadow: 0 4px 12px hsla(228, 15%, 8%, .4);
+  z-index: var(--z-tooltip);
+  transition: bottom .4s, transform .4s;
+}
+.scrollup: hover{
+  transform: translateY(-.25rem);
+}
+/* Show Scroll Up */
+/* (Your additional CSS styles here) */
+
+/*=============== BREAKPOINTS ===============*/
+/* For small devices */
+/* (Your additional CSS styles here) */
+@media screen and (max-width: 320px) {
+  .container {
+      margin-inline: 1rem;
+  }
+
+  .skills__content {
+      grid-template-columns: max-content;
+      row-gap: 1rem;
+  }
+
+  .services__card {
+      padding-block: 1.5rem;
+  }
+}
+
+/* For medium devices */
+@media screen and (min-width: 576px) {
+  .home__container,
+  .about__container,
+  .skills__container,
+  .services__container,
+  .projects__container,
+  .contact__container {
+      /* Tentukan jumlah kolom atau ukuran kolom yang diinginkan */
+      justify-content: center;
+  }
+
+  .nav__menu {
+    width: 55%;
+  }
+
+  .home__container,
+  .about__container,
+  .skills__container { /* Perbaikan typo dari .skills__conatiner */
+    grid-template-columns: repeat(2, 1fr);
+    align-items: center;
+  }
+
+  .home__data,
+  .about__data,
+  :is(.about__data): is(.section__subtitle, .section__title) {
+    text-align: initial;
+  }
+
+  .home__social {
+    justify-content: initial; /* Perbaikan typo dari justifiy-content */
+  }
+
+  .home__blob,
+  .about__blob {
+    width: 400px;
+    justify-content: initial;
+  }
+}
+
+/* For large devices */
+@media screen and (min-width: 1023px) {
+  .section {
+    padding-block: 7rem 2rem;
+  }
+
+  .section__subtitle {
+    font-size: var(--normal-font-size);
+  }
+
+  .nav {
+    height: calc(var(--header-height) + 1.5rem); /* Perbaikan spasi */
+  }
+
+  .nav__close,
+  .nav__toggle {
+    display: none;
+  }
+
+  .nav__list {
+    flex-direction: row;
+    column-gap: 3rem;
+  }
+
+  .nav__menu {
+    width: initial;
+  }
+
+  .blur-header::after {
+    backdrop-filter: blur(25px);
+  }
+}
+
+@media screen and (min-width: 1152px) {
+  .container {
+    margin-inline: auto;
+  }
+
+  .home__container {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 7rem;
+    padding-block: 2rem 3rem;
+  }
+
+  .home__blob {
+    width: 550px;
+    justify-self: end; /* Menambahkan ini untuk memindahkan .home__blob ke kanan */
+  }
+
+  .home__content {
+    row-gap: 4.5rem;
+  }
+
+  .home__social {
+    column-gap: 1.5rem;
+  }
+
+  .home__description {
+    margin-block: 1.5rem 2rem;
+  }
+}
+ //EKSPERIENCE
+ .container__experience{
+  margin-top: 100px;
+
+ }
+ .Font_title{
+  font:bold 
+ }
+ .colored-text {
+  color: yellow; /* Ganti dengan warna yang kamu inginkan */
+  font-size: 12px;
+  fon
+}
+.Font_title {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Menambahkan bayangan hitam dengan offset 2px ke kanan dan 2px ke bawah */
+}
+
+.colored-text {
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5); /* Menambahkan bayangan hitam dengan offset 2px ke kanan dan 2px ke bawah */
+  /* text-align: justify; */
+}
+.Font_title {
+  background-image: linear-gradient(to right, #00ff00, #008000); /* Membuat gradasi warna dari hijau ke hijau gelap */
+  -webkit-background-clip: text; /* Menggunakan teks sebagai clip untuk latar belakang */
+  color: transparent; /* Membuat warna teks menjadi transparan */
+  font-weight: bold; /* Mengatur tebal font menjadi bold */
+  
+}
+//SERTIFICATION
+.img-thumbnail {
+  border-width: 1px;
+}
